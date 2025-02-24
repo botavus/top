@@ -14,45 +14,58 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 100%;
+    height: 100vh; /* Занимает всю высоту экрана */
     background: #16213e;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
-    margin-top: 20px;
+    box-sizing: border-box;
+    border-radius: 0; /* Убираем скругление углов */
+    box-shadow: none; /* Убираем тень */
+    margin: 0; /* Убираем отступы */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Чтобы ничего не выходило за границы */
 }
 
 .slots {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 15px;
-    margin: 0 auto;
     width: 100%;
-    max-width: 1000px;
+    height: 60vh; /* Занимает 60% высоты экрана */
+    max-height: 600px; /* Ограничиваем максимальную высоту */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .reel {
-    width: 90%;
-    aspect-ratio: 1/1;
+    width: 30%; /* Каждый барабан занимает 30% ширины контейнера */
+    height: 100%; /* Занимает всю высоту slots */
     background: #0f3460;
-    border-radius: 16px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border: 9px solid #00b4d8;
+    border: 3px solid #00b4d8;
     transition: transform 0.3s;
 }
 
 .reel img {
-    width: 80%;
+    width: 80%; /* Уменьшаем размер символов */
     height: 80%;
     object-fit: contain;
+    transition: transform 0.3s;
 }
-
 .controls-wrapper {
-    margin-top: 30px;
     width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .balance-controls {
@@ -129,36 +142,37 @@ button {
 /* Адаптивность */
 @media (max-width: 768px) {
     .slots {
-        grid-template-columns: 1fr;
-        max-width: 400px;
+        height: 25vh; /* Уменьшаем высоту на мобильных устройствах */
+        gap: 10px;
     }
-    
+
     .reel {
-        max-width: 100%;
-        height: auto;
+        width: 28%; /* Немного уменьшаем ширину барабанов */
     }
-    
-    .balance-controls {
-        flex-direction: column;
-    }
-    
-    button {
-        width: 100%;
-        max-width: 200px;
+
+    .reel img {
+        width: 70%; /* Уменьшаем размер символов */
+        height: 70%;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 10px;
+    .slots {
+        height: 40vh; /* Еще меньше высота для маленьких экранов */
+        gap: 5px;
     }
-    
-    .balance {
-        font-size: 1.2em;
+
+    .reel {
+        width: 30%; /* Возвращаем ширину барабанов */
     }
-    
-    .bet-input {
-        width: 100%;
+
+    .reel img {
+        width: 60%; /* Еще меньше размер символов */
+        height: 60%;
+    }
+}
+    .win-combination.major-win {
+        font-size: 1.6em;
     }
 }
 /* Добавьте эти стили в конец style.css */
