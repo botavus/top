@@ -1,6 +1,17 @@
+const GAME_CONFIG = {
+    REEL_SPIN_DELAY: 100,
+    SYMBOL_CHANGE_DELAY: 75,
+    WIN_MESSAGE_DURATION: 5000,
+    AUTO_SPIN_DELAY: 2000,
+    MAJOR_WIN_DELAY: 1500,
+    REGULAR_WIN_DELAY: 500,
+    MAJOR_ANIMATION_DURATION: 7000,
+    SYMBOL_SCALE_FACTOR: 1.3
+};
+
 const paytableConfig = {
     combinations: [
-         {
+        {
             condition: s => 
                 s.some(img => img.includes('loh.png')) &&
                 s.some(img => img.includes('lemon.png')) &&
@@ -62,8 +73,7 @@ const paytableConfig = {
             display: ['diamond', 'diamond'],
             multiplier: 5,
             description: "х5 Два Кима "
-        },
-        
+        }
     ]
 };
 
@@ -83,9 +93,8 @@ let isSpinning = false;
 let currentBet = 10;
 let isAutoSpin = false;
 let autoSpinInterval = null;
-const AUTO_SPIN_DELAY = 1000;
+let isMajorWin = false;
 
-// Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
     generatePaytable();
     initEventListeners();
@@ -134,7 +143,7 @@ function toggleAutoSpin() {
         autoSpinInterval = setInterval(() => {
             if (!isSpinning && balance >= currentBet) spin();
             else if (balance < currentBet) toggleAutoSpin();
-        }, AUTO_SPIN_DELAY);
+        }, GAME_CONFIG.AUTO_SPIN_DELAY);
     } else {
         clearInterval(autoSpinInterval);
     }
@@ -152,6 +161,7 @@ function spin() {
     let results = [];
 
     reels.forEach((reel, index) => {
+        reel.classList.add('slow-spin');
         let spins = 0;
         const spinInterval = setInterval(() => {
             reel.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
@@ -161,24 +171,31 @@ function spin() {
                 clearInterval(spinInterval);
                 results.push(reel.innerHTML);
                 
+                const delay = GAME_CONFIG.REGULAR_WIN_DELAY;
+                
                 if (results.length === 3) {
-                    isSpinning = false;
-                    checkWin(results);
-                    document.getElementById('balance').textContent = balance;
+                    setTimeout(() => {
+                        reel.classList.remove('slow-spin');
+                        isSpinning = false;
+                        checkWin(results);
+                        document.getElementById('balance').textContent = balance;
+                    }, delay);
                 }
             }
-        }, 50);
+        }, 75);
     });
 }
 
 function checkWin(results) {
     let winAmount = 0;
     let comboName = '';
+    let isMajorWin = false;
     
     for (const comb of paytableConfig.combinations) {
         if (comb.condition(results)) {
             winAmount = currentBet * comb.multiplier;
             comboName = comb.description;
+            isMajorWin = comb.isMajor || false;
             break;
         }
     }
@@ -187,24 +204,47 @@ function checkWin(results) {
         balance += winAmount;
         document.getElementById('balance').textContent = balance;
         document.getElementById('winSound').play();
-        showWinAnimation();
-        showWinCombination(comboName);
+        showWinAnimation(isMajorWin);
+        showWinCombination(comboName, isMajorWin);
     }
 }
 
-function showWinAnimation() {
+function showWinAnimation(isMajor) {
     const reels = document.querySelectorAll('.reel');
-    reels.forEach(reel => {
-        reel.style.background = '#00b4d8';
-        setTimeout(() => reel.style.background = '#0f3460', 300);
-    });
+    
+    if(isMajor) {
+        reels.forEach(reel => {
+            reel.style.animation = 'major-win 2s ease-in-out';
+            reel.style.transform = 'scale(1.2)';
+        });
+        
+        document.body.style.backgroundColor = '#2a0d2e';
+        setTimeout(() => {
+            document.body.style.backgroundColor = '#1a1a2e';
+        }, 2000);
+    } else {
+        reels.forEach(reel => {
+            reel.style.background = '#00b4d8';
+            setTimeout(() => reel.style.background = '#0f3460', 300);
+        });
+    }
 }
 
-function showWinCombination(name) {
+function showWinCombination(name, isMajor) {
     const comboElement = document.getElementById('winCombo');
     comboElement.textContent = name + '!';
+    comboElement.className = 'win-combination';
+    
+    if(isMajor) {
+        comboElement.classList.add('major-win');
+        document.body.style.animation = 'majorWinBackground 3s ease-out';
+        setTimeout(() => {
+            document.body.style.animation = '';
+        }, 3000);
+    }
+    
     comboElement.style.display = 'block';
     setTimeout(() => {
         comboElement.style.display = 'none';
-    }, 3000);
+    }, isMajor ? 5000 : 3000);
 }

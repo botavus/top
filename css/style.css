@@ -1,70 +1,116 @@
+/* style.css */
 body {
     background: #1a1a2e;
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: 'Arial', sans-serif;
-    color: white;
+    color: yellow;
     margin: 0;
     min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .container {
+    width: 100%;
+    max-width: 1200px;
     background: #16213e;
-    padding: 2rem;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
-    margin-top: 2rem;
-    position: relative;
+    margin-top: 20px;
 }
 
 .slots {
-    display: flex;
-    gap: 1.5rem;
-    margin: 2rem 0;
-    perspective: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .reel {
-    width: 200px;
-    height: 200px;
+    width: 90%;
+    aspect-ratio: 1/1;
     background: #0f3460;
-    border-radius: 15px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border: 3px solid #00b4d8;
+    border: 9px solid #00b4d8;
+    transition: transform 0.3s;
 }
 
 .reel img {
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     object-fit: contain;
 }
 
-.controls {
+.controls-wrapper {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.balance-controls {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+}
+
+.balance {
+    font-size: 1.5em;
+    color: yellow;
+    padding: 10px 20px;
+    background: rgba(0, 180, 216, 0.1);
+    border-radius: 8px;
+}
+
+.bet-control {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.bet-input {
+    padding: 10px 15px;
+    border: 2px solid #00b4d8;
+    border-radius: 5px;
+    background: #0f3460;
+    color: white;
+    font-size: 1.1em;
+    width: 120px;
+    text-align: center;
+}
+
+.bet-label {
+    font-size: 0.9em;
+    color: #00b4d8;
 }
 
 .spin-buttons {
     display: flex;
-    gap: 1rem;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 button {
-    padding: 1.2rem 3rem;
+    padding: 12px 25px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     color: white;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
-    font-size: 1.2rem;
+    font-size: 1.1em;
+    min-width: 100px;
 }
 
 .spin-btn {
@@ -80,18 +126,51 @@ button {
     display: none;
 }
 
-.balance {
-    font-size: 2rem;
-    color: #00b4d8;
-    margin: 2rem 0;
+/* Адаптивность */
+@media (max-width: 768px) {
+    .slots {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+    
+    .reel {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .balance-controls {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+        max-width: 200px;
+    }
 }
 
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .balance {
+        font-size: 1.2em;
+    }
+    
+    .bet-input {
+        width: 100%;
+    }
+}
+/* Добавьте эти стили в конец style.css */
+
+/* Стили для таблицы выплат */
 .paytable {
     background: #0f3460;
     padding: 1rem;
     border-radius: 10px;
-    margin: 2rem 0;
-    width: 600px;
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 800px;
 }
 
 .paytable table {
@@ -99,21 +178,17 @@ button {
     border-collapse: collapse;
 }
 
-.paytable td, .paytable th {
+.paytable th {
+    color: #00b4d8;
+    font-size: 1.2rem;
     padding: 1rem;
     border-bottom: 2px solid #00b4d8;
-    text-align: center;
 }
 
-.bet-input {
-    padding: 0.8rem;
-    border: 2px solid #00b4d8;
-    border-radius: 5px;
-    background: #0f3460;
-    color: white;
-    font-size: 1.2rem;
-    width: 120px;
-    text-align: center;
+.paytable td {
+    padding: 1rem;
+    border-bottom: 1px solid #1a335e;
+    font-size: 1rem;
 }
 
 .paytable-symbols {
@@ -121,43 +196,105 @@ button {
     gap: 10px;
     justify-content: center;
     align-items: center;
+    padding: 10px 0;
 }
 
 .paytable-symbols img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
+    transition: transform 0.3s;
 }
 
-.any-symbol {
-    font-size: 24px;
-    color: #00b4d8;
+.paytable-symbols img:hover {
+    transform: scale(1.2);
 }
 
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 180, 216, 0.5);
-}
-
+/* Улучшенные стили для уведомлений */
 .win-combination {
-    position: absolute;
-    top: -40px;
+    position: fixed;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 180, 216, 0.9);
-    padding: 15px 30px;
-    border-radius: 25px;
-    font-size: 1.5em;
+    background: linear-gradient(45deg, #00b4d8, #0077b6);
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-size: 1.8em;
     font-weight: bold;
     color: white;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    box-shadow: 0 0 20px rgba(0,180,216,0.5);
-    z-index: 100;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 0 30px rgba(0,180,216,0.5);
+    z-index: 1000;
     display: none;
-    animation: comboShow 1s ease-out;
+    animation: winNotification 1.5s ease-out;
+    border: 2px solid #fff;
 }
 
-@keyframes comboShow {
-    0% { opacity: 0; transform: translate(-50%, -20px); }
-    100% { opacity: 1; transform: translate(-50%, 0); }
+@keyframes winNotification {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -100px) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, 0) scale(1);
+    }
+}
+
+/* Анимация для крупных выигрышей */
+.win-combination.major-win {
+    background: linear-gradient(45deg, #ffd700, #ff9800);
+    font-size: 2.2em;
+    animation: majorWinNotification 2s ease-out;
+    box-shadow: 0 0 40px rgba(255,215,0,0.5);
+}
+
+@keyframes majorWinNotification {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -100px) rotate(-10deg);
+    }
+    30% {
+        transform: translate(-50%, 0) rotate(10deg);
+    }
+    60% {
+        transform: translate(-50%, 0) rotate(-5deg);
+    }
+    100% {
+        transform: translate(-50%, 0) rotate(0deg);
+    }
+}
+
+/* Адаптивность для таблицы */
+@media (max-width: 768px) {
+    .paytable {
+        margin: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .paytable th {
+        font-size: 1rem;
+    }
+    
+    .paytable td {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+    
+    .paytable-symbols img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .win-combination {
+        font-size: 1.4em;
+        padding: 15px 30px;
+    }
+    
+    .win-combination.major-win {
+        font-size: 1.6em;
+    }
 }
