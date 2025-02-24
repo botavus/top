@@ -8,16 +8,16 @@ body {
     color: yellow;
     margin: 0;
     min-height: 100vh;
-    padding: 20px;
+    padding: 2px;
     box-sizing: border-box;
 }
 
 .container {
     width: 100%;
     max-width: 100%;
-    height: 100vh; /* Занимает всю высоту экрана */
+    height: 100vhvh; /* Занимает всю высоту экрана */
     background: #16213e;
-    padding: 20px;
+    padding: 1px;
     box-sizing: border-box;
     border-radius: 0; /* Убираем скругление углов */
     box-shadow: none; /* Убираем тень */
@@ -37,13 +37,13 @@ body {
     max-height: 600px; /* Ограничиваем максимальную высоту */
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 2px;
     box-sizing: border-box;
 }
 
 .reel {
     width: 30%; /* Каждый барабан занимает 30% ширины контейнера */
-    height: 100%; /* Занимает всю высоту slots */
+    height: 70%; /* Занимает всю высоту slots */
     background: #0f3460;
     border-radius: 10px;
     display: flex;
@@ -78,11 +78,11 @@ body {
 }
 
 .balance {
-    font-size: 1.5em;
+    font-size: 2em;
     color: yellow;
     padding: 10px 20px;
     background: rgba(0, 180, 216, 0.1);
-    border-radius: 8px;
+    border-radius: 28px;
 }
 
 .bet-control {
@@ -158,7 +158,7 @@ button {
 
 @media (max-width: 480px) {
     .slots {
-        height: 40vh; /* Еще меньше высота для маленьких экранов */
+        height: 25vh; /* Еще меньше высота для маленьких экранов */
         gap: 5px;
     }
 
@@ -167,8 +167,8 @@ button {
     }
 
     .reel img {
-        width: 60%; /* Еще меньше размер символов */
-        height: 60%;
+        width: 100%; /* Еще меньше размер символов */
+        height: 100%;
     }
 }
     .win-combination.major-win {
@@ -282,33 +282,3 @@ button {
     }
 }
 
-/* Адаптивность для таблицы */
-@media (max-width: 768px) {
-    .paytable {
-        margin: 1rem;
-        padding: 0.5rem;
-    }
-    
-    .paytable th {
-        font-size: 1rem;
-    }
-    
-    .paytable td {
-        font-size: 0.9rem;
-        padding: 0.8rem;
-    }
-    
-    .paytable-symbols img {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .win-combination {
-        font-size: 1.4em;
-        padding: 15px 30px;
-    }
-    
-    .win-combination.major-win {
-        font-size: 1.6em;
-    }
-}
