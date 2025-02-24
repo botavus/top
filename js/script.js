@@ -1,37 +1,37 @@
 const paytableConfig = {
     combinations: [
-        {
-            condition: s => s.every(img => img.includes('diamond.png')),
-            display: ['diamond', 'diamond', 'diamond'],
-            multiplier: 40,
-            description: "Три пидара"
-        },
-        {
+         {
             condition: s => 
                 s.some(img => img.includes('loh.png')) &&
                 s.some(img => img.includes('lemon.png')) &&
                 s.some(img => img.includes('clover.png')),
             display: ['loh', 'lemon', 'clover'],
-            multiplier: 100,
+            multiplier: 30,
             description: "Комбо Три пидора"
+        },
+        {
+            condition: s => s.every(img => img.includes('diamond.png')),
+            display: ['diamond', 'diamond', 'diamond'],
+            multiplier: 15,
+            description: "x15 Три пидара"
         },
         {
             condition: s => s.every(img => img.includes('7.png')),
             display: ['7', '7', '7'],
-            multiplier: 30,
-            description: "Три дулі"
+            multiplier: 10,
+            description: "х20 Три дулі"
         },
         {
             condition: s => s.every(img => img.includes('clover.png')),
             display: ['clover', 'clover', 'clover'],
-            multiplier: 30,
-            description: "Три Алона"
+            multiplier: 11,
+            description: "x11 Три Алона-гандона"
         },
         {
             condition: s => s.every(img => img.includes('bar.png')),
             display: ['bar', 'bar', 'bar'],
-            multiplier: 30,
-            description: "Три лукашиста"
+            multiplier: 11,
+            description: "x11 Три лукашиста"
         },
         {
             condition: s => s[0] === s[1] && s[1] === s[2],
@@ -42,20 +42,20 @@ const paytableConfig = {
         {
             condition: s => s.filter(img => img.includes('clover.png')).length >= 2,
             display: ['clover', 'clover'],
-            multiplier: 15,
-            description: "Два пидара"
+            multiplier: 5,
+            description: "х5 Два пидара"
         },
         {
             condition: s => s.filter(img => img.includes('bar.png')).length >= 2,
             display: ['bar', 'bar'],
-            multiplier: 15,
-            description: "Два лукашиста"
+            multiplier: 5,
+            description: "х5 Два лукашиста"
         },
         {
             condition: s => s.filter(img => img.includes('loh.png')).length >= 2,
             display: ['loh', 'loh'],
-            multiplier: 15,
-            description: "Два долбойоба"
+            multiplier: 5,
+            description: "х5 Два долбойоба"
         },
         
     ]
