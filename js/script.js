@@ -8,10 +8,10 @@ const paytableConfig = {
         },
         {
             condition: s => 
-                s.some(img => img.includes('cherry.png')) &&
+                s.some(img => img.includes('loh.png')) &&
                 s.some(img => img.includes('lemon.png')) &&
-                s.some(img => img.includes('7.png')),
-            display: ['cherry', 'lemon', '7'],
+                s.some(img => img.includes('clover.png')),
+            display: ['loh', 'lemon', 'clover'],
             multiplier: 100,
             description: "Комбо Три пидора"
         },
@@ -38,12 +38,6 @@ const paytableConfig = {
             display: ['any', 'any', 'any'],
             multiplier: 10,
             description: "х10 Три в ряд"
-        },
-        {
-            condition: s => s[0] === s[1] || s[1] === s[2],
-            display: ['any', 'any'],
-            multiplier: 2,
-            description: "х2 Два в ряд "
         },
         {
             condition: s => s.filter(img => img.includes('clover.png')).length >= 2,
