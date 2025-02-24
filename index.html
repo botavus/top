@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Slot Machine</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>CRYPTO SLOTS</h1>
+    <div class="balance">Balance: ₿ <span id="balance">1000</span></div>
+    
+    <div class="container">
+        <div class="win-combination" id="winCombo"></div>
+        <div class="slots">
+            <div class="reel" id="reel1"><img src="img/cherry.png"></div>
+            <div class="reel" id="reel2"><img src="img/cherry.png"></div>
+            <div class="reel" id="reel3"><img src="img/cherry.png"></div>
+        </div>
+        
+        <div class="controls">
+            <input type="number" class="bet-input" id="betAmount" value="10" min="1" max="1000">
+            <div class="spin-buttons">
+                <button class="spin-btn">SPIN (₿<span id="currentBet">10</span>)</button>
+                <button class="auto-spin-btn">AUTO SPIN</button>
+                <button class="stop-spin-btn">STOP</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="paytable">
+        <h2>Выигрышные комбинации</h2>
+        <table id="paytable"></table>
+    </div>
+
+    <audio id="spinSound" src="sounds/spin.mp3"></audio>
+    <audio id="winSound" src="sounds/win.mp3"></audio>
+
+    <script src="js/script.js" defer></script>
+</body>
+</html>
