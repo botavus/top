@@ -17,7 +17,7 @@ const paytableConfig = {
                 s.some(img => img.includes('lemon.png')) &&
                 s.some(img => img.includes('clover.png')),
             display: ['loh', 'lemon', 'clover'],
-            multiplier: 30,
+            multiplier: 20,
             description: "Комбо Три пидора"
         },
         {
@@ -35,20 +35,20 @@ const paytableConfig = {
         {
             condition: s => s.every(img => img.includes('clover.png')),
             display: ['clover', 'clover', 'clover'],
-            multiplier: 11,
-            description: "x11 Три Алона-гандона"
+            multiplier: 7,
+            description: "x7 Три Алона-гандона"
         },
         {
             condition: s => s.every(img => img.includes('bar.png')),
             display: ['bar', 'bar', 'bar'],
-            multiplier: 11,
-            description: "x11 Три лукашиста"
+            multiplier: 7,
+            description: "x7 Три лукашиста"
         },
         {
             condition: s => s[0] === s[1] && s[1] === s[2],
             display: ['any', 'any', 'any'],
-            multiplier: 10,
-            description: "х10 Три в ряд"
+            multiplier: 5,
+            description: "х5 Три в ряд"
         },
         {
             condition: s => s.filter(img => img.includes('clover.png')).length >= 2,
@@ -65,14 +65,14 @@ const paytableConfig = {
         {
             condition: s => s.filter(img => img.includes('loh.png')).length >= 2,
             display: ['loh', 'loh'],
-            multiplier: 5,
-            description: "х5 Два долбойоба"
+            multiplier: 3,
+            description: "х3 Два долбойоба"
         },
         {
             condition: s => s.filter(img => img.includes('diamond.png')).length >= 2,
             display: ['diamond', 'diamond'],
-            multiplier: 5,
-            description: "х5 Два Кима "
+            multiplier: 3,
+            description: "х3 Два Кима "
         }
     ]
 };
