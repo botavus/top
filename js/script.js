@@ -63,12 +63,6 @@ const paytableConfig = {
             multiplier: 15,
             description: "Два долбойоба"
         },
-        {
-            condition: (s) => s.some(img => img.includes('lemon.png')),
-            display: ['lemon'],
-            multiplier: 1,
-            description: "Один хуйлуша"
-        }
         
     ]
 };
